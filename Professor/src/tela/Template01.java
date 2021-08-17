@@ -5,21 +5,16 @@
  */
 package tela;
 
-import entidade.Aluno;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author jeremias.posso
  */
-public class CadastroAluno extends javax.swing.JFrame {
-
-    private Aluno aluno;
+public class Template01 extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroAluno
      */
-    public CadastroAluno() {
+    public Template01() {
         initComponents();
     }
 
@@ -36,9 +31,7 @@ public class CadastroAluno extends javax.swing.JFrame {
         titulo = new javax.swing.JLabel();
         nome = new javax.swing.JLabel();
         varNome = new javax.swing.JTextField();
-        btSalvar = new javax.swing.JButton();
-        idade = new javax.swing.JLabel();
-        varIdade = new javax.swing.JFormattedTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro Cliente");
@@ -51,24 +44,8 @@ public class CadastroAluno extends javax.swing.JFrame {
         nome.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         nome.setText("Nome:");
 
-        btSalvar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btSalvar.setText("Salvar");
-        btSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalvarActionPerformed(evt);
-            }
-        });
-
-        idade.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        idade.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        idade.setText("Idade:");
-
-        varIdade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        varIdade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                varIdadeActionPerformed(evt);
-            }
-        });
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setText("Salvar");
 
         javax.swing.GroupLayout pricipalLayout = new javax.swing.GroupLayout(pricipal);
         pricipal.setLayout(pricipalLayout);
@@ -77,17 +54,11 @@ public class CadastroAluno extends javax.swing.JFrame {
             .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pricipalLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(pricipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pricipalLayout.createSequentialGroup()
-                        .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(pricipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pricipalLayout.createSequentialGroup()
-                        .addComponent(idade, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(varIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(172, Short.MAX_VALUE))
         );
         pricipalLayout.setVerticalGroup(
@@ -98,12 +69,8 @@ public class CadastroAluno extends javax.swing.JFrame {
                 .addGroup(pricipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nome)
                     .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pricipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idade)
-                    .addComponent(varIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
         );
 
@@ -122,53 +89,6 @@ public class CadastroAluno extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        aluno = new Aluno();
-        boolean erro = validarFormulario();
-        if (!erro) {
-            //TODO chamar metodo que salva no bd.
-            JOptionPane.showMessageDialog(this, "Salvar");
-        }
-    }//GEN-LAST:event_btSalvarActionPerformed
-
-    private void varIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varIdadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_varIdadeActionPerformed
-    private boolean validarFormulario() {
-
-        String nome = varNome.getText().trim();
-
-        if (!validarCampo3Valor(nome)) {
-            JOptionPane.showMessageDialog(null, "Digite um nome correto!");
-            return true;
-
-        }
-        if (validarIdade()) {
-            JOptionPane.showMessageDialog(null, "Digite uma idade correta!");
-            return true;
-        }
-
-        return false;
-
-    }
-
-    private boolean validarIdade() {
-
-        String idade = varIdade.getText().trim();
-        if (idade.equals("")) {
-            return true;
-        } else {
-            int valorIdade = Integer.parseInt(idade);
-            return valorIdade <= 16 || valorIdade > 100;
-        }
-
-    }
-
-    private boolean validarCampo3Valor(String valor) {
-
-        return valor.length() < 3;
-    }
-
     /**
      * @param args the command line arguments
      */
@@ -186,31 +106,32 @@ public class CadastroAluno extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Template01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Template01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Template01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Template01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroAluno().setVisible(true);
+                new Template01().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btSalvar;
-    private javax.swing.JLabel idade;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel nome;
     private javax.swing.JPanel pricipal;
     private javax.swing.JLabel titulo;
-    private javax.swing.JFormattedTextField varIdade;
     private javax.swing.JTextField varNome;
     // End of variables declaration//GEN-END:variables
 }
