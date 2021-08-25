@@ -55,12 +55,12 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="varNome" pref="200" max="32767" attributes="0"/>
                       <Component id="btSalvar" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="varEmail" pref="200" max="32767" attributes="0"/>
                       <Component id="varTelefone" alignment="0" max="32767" attributes="0"/>
-                      <Component id="varCracha" alignment="0" pref="200" max="32767" attributes="0"/>
                       <Component id="varLogradouro" alignment="0" pref="200" max="32767" attributes="0"/>
                       <Component id="varBairro" max="32767" attributes="0"/>
                       <Component id="varCidade" alignment="0" max="32767" attributes="0"/>
+                      <Component id="varEmail" alignment="0" pref="200" max="32767" attributes="0"/>
+                      <Component id="varCracha" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="172" max="32767" attributes="0"/>
               </Group>
@@ -87,8 +87,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="varCracha" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbCracha" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="varCracha" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -113,13 +113,15 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
+        <Component class="javax.swing.JTextField" name="varEmail">
+        </Component>
         <Component class="javax.swing.JLabel" name="titulo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Cadastro Aluno"/>
+            <Property name="text" type="java.lang.String" value="Cadastro Professor"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="nome">
@@ -152,8 +154,6 @@
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Email:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="varEmail">
         </Component>
         <Component class="javax.swing.JLabel" name="lbTelefone">
           <Properties>
@@ -194,7 +194,15 @@
             <Property name="text" type="java.lang.String" value="Cracha:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="varCracha">
+        <Component class="javax.swing.JFormattedTextField" name="varCracha">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="#####" subtype="-1" type="5"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="varCrachaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbBairro">
           <Properties>

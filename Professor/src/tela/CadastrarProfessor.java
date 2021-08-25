@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package tela;
+
 import javax.swing.JOptionPane;
-import entidade.Professor;
+import entidade1.Professor;
 
 /**
  *
@@ -14,6 +15,8 @@ import entidade.Professor;
 public class CadastrarProfessor extends javax.swing.JFrame {
 
     private Professor professor;
+    private Object validarEmail;
+
     public CadastrarProfessor() {
         initComponents();
     }
@@ -28,18 +31,18 @@ public class CadastrarProfessor extends javax.swing.JFrame {
     private void initComponents() {
 
         pricipal = new javax.swing.JPanel();
+        varEmail = new javax.swing.JTextField();
         titulo = new javax.swing.JLabel();
         nome = new javax.swing.JLabel();
         varNome = new javax.swing.JTextField();
         btSalvar = new javax.swing.JButton();
         lbEmail = new javax.swing.JLabel();
-        varEmail = new javax.swing.JTextField();
         lbTelefone = new javax.swing.JLabel();
         varTelefone = new javax.swing.JFormattedTextField();
         lbLogradouro = new javax.swing.JLabel();
         varLogradouro = new javax.swing.JTextField();
         lbCracha = new javax.swing.JLabel();
-        varCracha = new javax.swing.JTextField();
+        varCracha = new javax.swing.JFormattedTextField();
         lbBairro = new javax.swing.JLabel();
         varBairro = new javax.swing.JTextField();
         lbCidade = new javax.swing.JLabel();
@@ -50,7 +53,7 @@ public class CadastrarProfessor extends javax.swing.JFrame {
 
         titulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText("Cadastro Aluno");
+        titulo.setText("Cadastro Professor");
 
         nome.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nome.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -91,6 +94,17 @@ public class CadastrarProfessor extends javax.swing.JFrame {
         lbCracha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbCracha.setText("Cracha:");
 
+        try {
+            varCracha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        varCracha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                varCrachaActionPerformed(evt);
+            }
+        });
+
         lbBairro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lbBairro.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbBairro.setText("Bairro:");
@@ -118,12 +132,12 @@ public class CadastrarProfessor extends javax.swing.JFrame {
                 .addGroup(pricipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(varNome, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(varEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(varTelefone)
-                    .addComponent(varCracha, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(varLogradouro, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(varBairro)
-                    .addComponent(varCidade))
+                    .addComponent(varCidade)
+                    .addComponent(varEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(varCracha, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(172, Short.MAX_VALUE))
         );
         pricipalLayout.setVerticalGroup(
@@ -144,8 +158,8 @@ public class CadastrarProfessor extends javax.swing.JFrame {
                     .addComponent(varTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pricipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(varCracha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbCracha))
+                    .addComponent(lbCracha)
+                    .addComponent(varCracha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pricipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbLogradouro)
@@ -185,48 +199,60 @@ public class CadastrarProfessor extends javax.swing.JFrame {
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         professor = new Professor();
         boolean erro = validarFormulario();
-        if (!erro){
+        if (!erro) {
             JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
         }
-       
-        
+
+
     }//GEN-LAST:event_btSalvarActionPerformed
-private boolean validarFormulario() {
+
+    private void varCrachaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varCrachaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_varCrachaActionPerformed
+    private boolean validarFormulario() {
 
         String nome = varNome.getText().trim();
 
-        if (!validarCampo3Valor(nome)) {
+        if (validarCampo3Valor(nome)) {
             JOptionPane.showMessageDialog(null, "Digite um nome correto!");
             return true;
 
         }
 
-
         if (validarTelefone()) {
             JOptionPane.showMessageDialog(null, "Digite um telefone correto!");
             return true;
         }
-        
+
         String logradouro = varLogradouro.getText().trim();
-        if (validarCampo3Valor(logradouro)){
+        if (validarCampo3Valor(logradouro)) {
             JOptionPane.showMessageDialog(null, "Digite um logaradouro correto!");
             return true;
         }
 
         String bairro = varBairro.getText().trim();
-        if(validarCampo3Valor(bairro)){
+        if (validarCampo3Valor(bairro)) {
             JOptionPane.showMessageDialog(null, "Digite um bairro correto!");
             return true;
         }
-        if(ValidarCracha()){
-            JOptionPane.showMessageDialog(null, "Digite um número de cracha correto!");
+        String cidade = varCidade.getText().trim();
+        if (validarCampo3Valor(cidade)){
+            JOptionPane.showMessageDialog(null, "Digite uma cidade correta!");
+            return true;
+        }
+        
+        if (ValidarCracha()) {
+            JOptionPane.showMessageDialog(null, "Digite um número de crachá correto!");
+            return true;
+        }
+        if (validarEmail()) {
+            JOptionPane.showMessageDialog(null, "Digite um email correto!");
             return true;
         }
 
         return false;
-        
-    }
 
+    }
 
     private boolean validarCampo3Valor(String valor) {
 
@@ -238,14 +264,23 @@ private boolean validarFormulario() {
         //boolean erro = telefone.length() < 11; isso é a mesma coisa q o de baixo!
         return telefone.length() < 11;
     }
-    private boolean ValidarCracha(){
+
+    private boolean ValidarCracha() {
         String cracha = varCracha.getText().trim();
-        return cracha.length() < 5;
+        return cracha.equals("") || cracha.equals("00000");
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    private boolean validarEmail() {
+        String email = varEmail.getText().trim();
+       // if(!email.contains("@") || !email.contains(".") ){
+        //    return true;
+            
+       // }
+       // return false;
+       return !email.contains("@") || !email.contains(".");
+    }
+
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -294,12 +329,11 @@ private boolean validarFormulario() {
     private javax.swing.JLabel titulo;
     private javax.swing.JTextField varBairro;
     private javax.swing.JTextField varCidade;
-    private javax.swing.JTextField varCracha;
+    private javax.swing.JFormattedTextField varCracha;
     private javax.swing.JTextField varEmail;
     private javax.swing.JTextField varLogradouro;
     private javax.swing.JTextField varNome;
     private javax.swing.JFormattedTextField varTelefone;
     // End of variables declaration//GEN-END:variables
 
-     
 }
