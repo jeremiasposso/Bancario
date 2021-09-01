@@ -116,6 +116,7 @@ public class CadastroCorrentista extends javax.swing.JFrame {
     private void btCaixaEletronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCaixaEletronicoActionPerformed
       new CaixaEletronico(contaCorrente).setVisible(true);
       dispose();
+        System.out.println("Senha: " + contaCorrente.getSenha());
     }//GEN-LAST:event_btCaixaEletronicoActionPerformed
     
     private boolean validarFormolario(){
